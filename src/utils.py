@@ -4,6 +4,8 @@
 from typing import List, Tuple, Dict, Union
 
 
+class dummy:
+    pass
 
 def logistic_eq_iterator(r_value:float, seed: Union[float, int], iterations = int) -> List[float]:
     """
