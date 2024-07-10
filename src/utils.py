@@ -31,5 +31,4 @@ def logistic_eq_iterator(r_value:float, seed: Union[float, int], iterations = in
         # Adding the iterate to the orbit list
         orbit.append(round(iterate, 3))
 
-
     return orbit
