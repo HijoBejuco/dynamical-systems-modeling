@@ -28,7 +28,9 @@ def logistic_eq_iterator(r_value:float, seed: Union[float, int], iterations = in
         # Iterating the function 
         iterate = r_value*x*(1-x)
 
-        # Adding the iterate to the orbit list
-        orbit.append(round(iterate, 3))
+        # Adding the iterate to the orbit list, be careful with this
+        # rounding. make sure leave enough decimals to avoid induce
+        # misscalculations or imprecisions. 
+        orbit.append(round(iterate, 10))
 
     return orbit
