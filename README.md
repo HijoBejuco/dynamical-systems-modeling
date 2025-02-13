@@ -15,12 +15,12 @@
 # Mathematics
 
 
-### Two dimensional discrete dynamical systems
+## Two dimensional discrete dynamical systems
 In this kind of systems, there is a **function** that takes 2 numbers as input, and returns two numbers as outputs. Note that this is not the same as two separate functions. The process should be seen as one multi input and multi-output function. The output for y depends not just on the input of y but also on the input of x.
 
 * If a one dimensional dynamical system gives us an scalar in R1, a two dimensional system gives us a point in R2 --> (x, y)
 
-<img src="images/mathematics/two_dimensional_discrete_dynamical_systems/00_multi_variable_function.jpg" alt="correlation_vs_causation" width="250" height="90">
+<img src="images\mathematics\two_dimensional_discrete_dynamical_systems\00_multi_variable_function.jpg" alt="correlation_vs_causation" width="250" height="90">
 
 
 #### The Hénon map
@@ -36,9 +36,9 @@ $$
 **References of this section:**
 * [Feldman, D. P. (2012). Chaos and fractals: an elementary introduction. Oxford University Press.](https://dpfeldman.github.io/Chaos/index.html)
 
-### Differential equations
+## Differential equations
 
-#### Computational solutions
+### Computational solutions
 
 
 # dynamical-systems-modeling
