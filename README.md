@@ -23,9 +23,10 @@ In this kind of systems, there is a **function** that takes 2 numbers as input, 
 <img src="images\mathematics\two_dimensional_discrete_dynamical_systems\00_multi_variable_function.jpg" alt="correlation_vs_causation" width="250" height="90">
 
 
-#### The Hénon map
+### The Hénon map
 Functions are also commonly refered as **maps** by mathematicians, so map = function. 
 
+<!-- This is latex syntax -->
 $$
 \begin{align*}
 x_{n+1} &= y_n + 1 - a x_n^2 , \\
@@ -33,7 +34,12 @@ y_{n+1} &= b x_n ,
 \end{align*}
 $$
 
-**References of this section:**
+Where a and b are parameters. These parameters define the orbit's behaviour. 
+* The Hénon map, from Michel Hénon, is constructed as an approximation to the Lorenz equations. 
+
+
+
+### **References of this section:**
 * [Feldman, D. P. (2012). Chaos and fractals: an elementary introduction. Oxford University Press.](https://dpfeldman.github.io/Chaos/index.html)
 
 ## Differential equations
