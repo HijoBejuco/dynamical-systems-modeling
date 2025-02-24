@@ -6,12 +6,12 @@ import matplotlib.animation as animation
 from src.utils import logistic_eq_iterator
 
 # Number of iterations
-iterations = 100
+iterations = 50
 
 # Sample data
 x = [i for i in range(iterations)]
-y1 = logistic_eq_iterator(3.9999, 0.1, iterations)#[i**0.5 for i in x]
-y2 = logistic_eq_iterator(3.9998, 0.1, iterations)#[i**0.3 for i in x]  
+y1 = logistic_eq_iterator(4, 0.4, iterations)#[i**0.5 for i in x]
+y2 = logistic_eq_iterator(4, 0.400001, iterations)#[i**0.3 for i in x]  
 y3 = logistic_eq_iterator(3.2, 0.1, iterations)
 
 # Initialize the figure and axis
@@ -25,9 +25,9 @@ fig, ax = plt.subplots()
 # returns a tuple, because ax.plot() can plot multiple lines,
 # if we pass multiple parameters to it. In this case, cause we are
 # passing just 1 line, we just need the first element of the tuple.
-line1, = ax.plot(x, y1, 'r--', label='Chaotic red')  # Red curve
-line2, = ax.plot(x, y2, 'k-', label='Chaotic black')  # Black curve
-line3, = ax.plot(x, y3, 'g*-', label='Periodic')  # Black curve
+line1, = ax.plot(x, y1, 'r--', label='0.4')  # Red curve
+line2, = ax.plot(x, y2, 'k-', label='0.400001')  # Black curve
+#line3, = ax.plot(x, y3, 'g*-', label='Periodic')  # Black curve
 
 # Set up the plot limits
 ax.set_xlim(0, max(x))
@@ -42,8 +42,8 @@ ax.legend()
 def update(frame):
     line1.set_data(x[:frame], y1[:frame])
     line2.set_data(x[:frame], y2[:frame])
-    line3.set_data(x[:frame], y3[:frame])
-    return line1, line2, line3
+    #line3.set_data(x[:frame], y3[:frame])
+    return line1, line2#, line3
 
 # Create the animation
 # A frame: represents a single step in the animation, each frame 
@@ -58,9 +58,10 @@ ani = animation.FuncAnimation(
     interval=600 # delay btween frames in miliseconds
 )
 
+
+
+# Save the animation as an MP4 file
+ani.save('simulation.gif', writer='pillow', fps=7)
+
 # Show the plot
 plt.show()
-
-
-
-
