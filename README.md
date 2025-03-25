@@ -5,6 +5,14 @@
         <a href="#mathematics">Mathematics</a>
         <ul><!-- Tag for unordered list -->
             <li><a href="#two-dimensional-discrete-dynamical-systems">Two dimensional discrete dynamical systems</a></li>
+            <li>
+                <a href="#differential-equations">Differential equations</a>
+                <ul>
+                    <li><a href="#one-dimensional-differential-equations">One dimensional differential equations</a></li>
+                    <li><a href="#two-dimensional-differential-equations">Two dimensional differential equations</a></li>                    
+                    <li><a href="#computational-solutions">Computational solutions</a></li>                    
+                </ul>
+            </li>
         </ul>
     </li>
 </ol>
@@ -43,6 +51,12 @@ Where a and b are parameters. These parameters define the orbit's behaviour.
 * [Feldman, D. P. (2012). Chaos and fractals: an elementary introduction. Oxford University Press.](https://dpfeldman.github.io/Chaos/index.html)
 
 ## Differential equations
+
+### One dimensional differential equations
+
+### Two dimensional differential equations
+
+The model we are going to study to exemplify the two dim. dif. eq. is the **Lotka-Volterra** model. 
 
 ### Computational solutions
 
