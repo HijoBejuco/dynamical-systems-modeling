@@ -68,7 +68,8 @@ $\frac{dx}{dt} = f(x)$
 The model we are going to study to exemplify the two dim. dif. eq. is the **Lotka-Volterra** model. 
 
 ### Computational solutions
-
+Computational methods for solving differential equations, here we describe the **Euler's Method**
+<img src="images\mathematics\computational_solutions\computational_solutions_differential_equations_eulers_method.jpg" alt="eulers_method" width="" height="">
 
 # dynamical-systems-modeling
 
