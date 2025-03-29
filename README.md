@@ -53,6 +53,15 @@ Where a and b are parameters. These parameters define the orbit's behaviour.
 ## Differential equations
 
 ### One dimensional differential equations
+About Newtons law of cooling and how to solve a differential equation.
+<img src="images\mathematics\one_dimensional_differential_equations\newtons_law_differential_equation.jpg" alt="newtons_law_of_cooling" width="" height="">
+
+Another example on solving a differential equation, and which are the possible solutions for a differential equation of the form: 
+
+<!-- This is latex syntax -->
+$\frac{dx}{dt} = f(x)$
+
+<img src="images\mathematics\one_dimensional_differential_equations\solution_dif_equation_phase_line.jpg" alt="solving_diff_eq" width="" height="">
 
 ### Two dimensional differential equations
 
