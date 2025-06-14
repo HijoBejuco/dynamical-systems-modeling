@@ -75,5 +75,6 @@ plt.show()
 
 
 
+
 # Developing the animation that compares chaotic curves
 # with very simmilar initial conditions.    vbvufzz
