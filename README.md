@@ -15,6 +15,9 @@
             </li>
         </ul>
     </li>
+    <li>
+        <a href="#environmental-modeling">Environmental modeling</a>
+    </li>
 </ol>
 
 
@@ -71,6 +74,12 @@ The model we are going to study to exemplify the two dim. dif. eq. is the **Lotk
 Computational methods for solving differential equations, here we describe the **Euler's Method**
 <img src="images\mathematics\computational_solutions\computational_solutions_differential_equations_eulers_method.jpg" alt="eulers_method" width="" height="">
 
+
+# Environmental modeling
+
+
+
+
 # dynamical-systems-modeling
 
 ## Important references and links:
@@ -79,3 +88,6 @@ Computational methods for solving differential equations, here we describe the *
 
 ## Description
 The purpose of this repo is to study dynamical systems theory, using python code. 
+
+
+# 
