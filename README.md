@@ -17,6 +17,9 @@
     </li>
     <li>
         <a href="#environmental-modeling">Environmental modeling</a>
+        <ul>
+            <li><a href="#plotting-in-three-dimensions-3d">Plotting in three dimensions 3D</a></li>
+        </ul>
     </li>
 </ol>
 
@@ -76,6 +79,8 @@ Computational methods for solving differential equations, here we describe the *
 
 
 # Environmental modeling
+
+## Plotting in three dimensions 3D
 
 
 
