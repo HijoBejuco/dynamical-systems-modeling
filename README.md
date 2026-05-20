@@ -72,10 +72,13 @@ $\frac{dx}{dt} = f(x)$
 ### Two dimensional differential equations
 
 The model we are going to study to exemplify the two dim. dif. eq. is the **Lotka-Volterra** model. 
+<img src="images\mathematics\two_dimensional_differential_equations\01.jpg" alt="lotka_volterra_1" width="" height="">
+<img src="images\mathematics\two_dimensional_differential_equations\02.jpg" alt="lotka_volterra_2" width="" height="">
 
 ### Computational solutions
 Computational methods for solving differential equations, here we describe the **Euler's Method**
 <img src="images\mathematics\computational_solutions\computational_solutions_differential_equations_eulers_method.jpg" alt="eulers_method" width="" height="">
+<img src="images\mathematics\computational_solutions\eulers_method_two_equations.jpg" alt="eulers_method_2" width="" height="">
 
 
 # Environmental modeling
