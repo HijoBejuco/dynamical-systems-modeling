@@ -101,10 +101,10 @@ def update(frame):
     line2.set_3d_properties(zs2[start:frame])
 
     # rotación lenta de cámara
-    ax.view_init(elev=25, azim=45 + frame * 0.02)
+    #ax.view_init(elev=25, azim=45 + frame * 0.02)
 
     return line1, line2
 
-ani = FuncAnimation(fig, update, frames=steps, interval=10)
+ani = FuncAnimation(fig, update, frames=steps, interval=0.000000010)
 
 plt.show()
