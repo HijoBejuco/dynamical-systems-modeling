@@ -41,7 +41,7 @@ def logistic_eq_iterator(r_value:float, seed: Union[float, int], iterations = in
 # Create the differential equation we are about to solve.
 
 
-def newtons_law_of_cooling(k:float, Tr:float, variable_magnitude:float):
+def newtons_law_of_cooling(t: float, y: float, k: float, Tr: float):
     """
     This is a differential equation of the form: dT(t)/dt = k(Tr - T(t)); 
     where T(t) is the temperature at time t (this is the parameter 
@@ -49,7 +49,9 @@ def newtons_law_of_cooling(k:float, Tr:float, variable_magnitude:float):
 
     Args:
     -------
-        variable_magnitude: float
+        t: float
+            current time (not used explicitly, but required by the solver interface)
+        y: float
             The variable magnitude of the differential equation.
             This can also be interpreted as the initial condition.
         k: float
@@ -59,12 +61,11 @@ def newtons_law_of_cooling(k:float, Tr:float, variable_magnitude:float):
             Temperature of the environment.
 
     """
-    T = variable_magnitude
-    return k*(Tr - T)
+    return k*(Tr - y)
 
 
 # Function for applying the Euler's method to solve the differential equation
-def euler_method(differential_eq: Callable, delta, iterations, *args, **kwargs):
+def euler_method(differential_eq: Callable, y0: float, t0: float, delta: float, iterations, *args) -> pd.DataFrame:
     """
     This is the Euler's method for solving differential equations.
     Args:
@@ -76,9 +77,8 @@ def euler_method(differential_eq: Callable, delta, iterations, *args, **kwargs):
             is the size of the interval we assume the differential
             equation is constant.
         *args: Tuple
-            The arguments needed for the differential equation.
-        **kwargs: Dict
-            The positional arguments needed for the differential equation.
+            The arguments needed for the differential equation. These
+            are the parameters required for the diff eq. 
 
     Returns: DataFrame
     -------
@@ -108,29 +108,19 @@ def euler_method(differential_eq: Callable, delta, iterations, *args, **kwargs):
         from the first step of this algorithm.
     """
 
-    
-    # Accessing to the Kwargs dictionary to extract the 
-    # variable magnitude, so we can apply the Euler's method.
-    # The first time we call this variable magnitude is the initial
-    # condition of the system.
-    # The **Kwargs is a dictionary that contains all the
-    # positional arguments and can be accessed by the key.
-    variable_magnitude = kwargs['variable_magnitude']
 
+    t = t0
+    y = y0 
     results = []
 
-    for i in range(iterations):
-        results.append(variable_magnitude)
 
-        rate_of_change = differential_eq(*args, variable_magnitude)
+    for i in range(iterations):
+        results.append({"iteration": i, "t": t, "y": y})
+
+        rate_of_change = differential_eq(t, y, *args)
 
         # Calculating new variable magnitude
-        variable_magnitude = round((rate_of_change * delta) + variable_magnitude, 5)
+        y = y + (rate_of_change * delta)
+        t = t + delta
 
-    df_result = pd.DataFrame(data={
-        "iteration": np.arange(0, iterations, 1),
-        "variable_magnitude": results
-    })
-
-
-    return df_result
+    return pd.DataFrame(results)
