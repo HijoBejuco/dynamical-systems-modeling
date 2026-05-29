@@ -41,7 +41,7 @@ def logistic_eq_iterator(r_value:float, seed: Union[float, int], iterations = in
 # Create the differential equation we are about to solve.
 
 
-def newtons_law_of_cooling(t: float, y: float, k: float, Tr: float):
+def newtons_law_of_cooling_original_to_erase(t: float, y: float, k: float, Tr: float):
     """
     This is a differential equation of the form: dT(t)/dt = k(Tr - T(t)); 
     where T(t) is the temperature at time t (this is the parameter 
@@ -62,6 +62,29 @@ def newtons_law_of_cooling(t: float, y: float, k: float, Tr: float):
 
     """
     return k*(Tr - y)
+
+def newtons_law_of_cooling(t: float, y: float, k: float, Tr: float) -> np.ndarray:
+    """
+    This is a differential equation of the form: dT(t)/dt = k(Tr - T(t)); 
+    where T(t) is the temperature at time t (this is the parameter 
+    that controls the initial conditions of the system). 
+
+    Args:
+    -------
+        t: float
+            current time (not used explicitly, but required by the solver interface)
+        y: float
+            The variable magnitude of the differential equation.
+            This can also be interpreted as the initial condition.
+        k: float
+            Constant that models how the object exchange heat with 
+            the environment
+        Tr: float
+            Temperature of the environment.
+
+    """
+    return np.array([k*(Tr - y)])
+
 
 
 # Function for applying the Euler's method to solve the differential equation
@@ -144,17 +167,25 @@ def euler_method(differential_eq: Callable, y0: np.ndarray, t0: float,
         differential_eq: Callable (function, method, class)
             The differential equation to solve. This differential equation MUST have
             a predefined structure like this: 
-                def differential_eq(t: float, y: float, *args) -> np.ndarray of shape (n,)
+                def diff_eq_system_name(t: float, y: float, *args) -> np.ndarray of shape (n,)
                     This function returns a np array, bacause it can also be a system of n equations,
                         such as Lorenz eq (3 eqs) and Lotka-Volterra model (2 eqs)
                     t: current time (not used explicitly, but required by the solver interface)
                     y: The variable magnitude of the differential equation.
                         This can also be interpreted as the initial condition.
                     *args: are all the parameters needed for the diffetential_eq()
+        y0: np.ndarray of shape (n,)
+            Initial conditions of the system, every member of the array is a specific initial
+            condition of the equation to solve. If is a system of n equations, it goes in order
+            depending on the differential_eq function. 
+        t0: float
+            initial time
         delta: float
             This is the step size for the Euler's method. this
             is the size of the interval we assume the differential
             equation is constant.
+        iterations: int
+            quantity of steps/ iterations well run.
         *args: Tuple
             The arguments needed for the differential equation. These
             are the parameters required for the diff eq. 
@@ -187,6 +218,20 @@ def euler_method(differential_eq: Callable, y0: np.ndarray, t0: float,
         from the first step of this algorithm.
     """
 
+    t = t0
+    y = y0.copy() #Here we avoid losing initial conditions
+    n = len(y0)
+    results = []
+    for i in range(iterations):
+        results.append({"iterations": i, "t": t, **{f"y{j}": y[j] for j in range(n)}})
+        
+        dydt = differential_eq(t, y, *args) # vector (n,)
+        # Vectorial simultaneous update, here we update all the
+        # values of the eqs we are solving.
+        y = y + dydt * delta
+        t = t + delta
+    
+    return pd.DataFrame(results)
 
 
 
