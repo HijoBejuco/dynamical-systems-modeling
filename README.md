@@ -24,6 +24,66 @@
 </ol>
 
 
+# Animations and Simulations
+Here we will document some tools for excecute and create basic animations
+
+## Pygame
+
+## **matplotlib.animation**
+The basic example here is the animation of a time series, ploting gradually a time series into a chart. 
+
+**Step 1:** create the figure with its axis, in this case we create a subplot of shape (2,2)
+```python 
+fig, ax = plt.subplots(2, 2, figsize=(10, 8))
+```
+
+**Step 2:** configuring the plot
+
+```python
+ax[0,1].set_xlim(df1.iterations.min(), df1.iterations.max())
+ax[0,1].set_ylim(0, max(df1.y1.max(), df2.y1.max(), df3.y1.max()) * 1.1)
+ax[0,1].set_title('Poblacion predadores en el tiempo,\nvariando el gamma. @hijoarbol')
+ax[0,1].set_xlabel('Tiempo')
+ax[0,1].set_ylabel('Población')
+```
+
+
+**Step 3:** Create the empty lines, we are going to fill on each iteration.
+the , after line1 and line2 is necessary because ax.plot() returns a tuple, because ax.plot() can plot multiple lines, if we pass multiple parameters to it. In this case, cause we are passing just 1 line, we just need the first element of the tuple.
+```python
+line1, = ax[0,1].plot([], [], color='steelblue', label='gamma=1.5', linewidth=1.5)
+line2, = ax[0,1].plot([], [], color='red',       label='gamma=1.0', linewidth=1.5)
+line3, = ax[0,1].plot([], [], color='green',     label='gamma=0.5', linewidth=1.5)
+```
+
+
+
+**Step 4:** the update function. 
+The update function is responsible for updating the data in the plot for each frame. The function receives a frame as a parameter, and updates the data in the plot to show the data up to that point in time. The set_data() sets the x and y fata of the line, changing what is displayed in the plot. 
+
+```python
+def update(frame):
+    line1.set_data(df1.iterations[:frame], df1.y1[:frame])
+    line2.set_data(df2.iterations[:frame], df2.y1[:frame])
+    line3.set_data(df3.iterations[:frame], df3.y1[:frame])
+    return line1, line2, line3
+```
+
+**Step 5:**
+Create the animation A frame: represents a single step in the animation, each frame  updates the plot to show the data up to that point in time.  the frame can be an iterable or an integer. Also with the  frame, the speed of the animation can be controlled.
+
+```python
+ani = FuncAnimation(
+    fig,
+    update,
+    frames=len(df1),  # cuántos frames en total
+    interval=20,      # ms entre frames (más bajo = más rápido)
+    blit=True
+)
+
+plt.tight_layout()
+plt.show()
+```
 
 
 # Mathematics
