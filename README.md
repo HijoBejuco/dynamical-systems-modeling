@@ -32,7 +32,7 @@ Here we will document some tools for excecute and create basic animations
 ## **matplotlib.animation**
 The basic example here is the animation of a time series, ploting gradually a time series into a chart. 
 
-**Step 1:** create the figure with its axis, in this case we create a subplot of shape (2,2)
+**Step 1:** create the figure with its axis, in this case we create a subplot of shape (2,2). Also, we must have the data, in this case we have 3 dataframes (df1, df2, df3) which have 3 columns (iterations, y0, y1)
 ```python 
 fig, ax = plt.subplots(2, 2, figsize=(10, 8))
 ```

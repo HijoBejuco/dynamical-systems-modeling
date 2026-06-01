@@ -76,5 +76,113 @@ ani = FuncAnimation(
     blit=True
 )
 
+#################################################################################################
+
+
+
+
+
+
+
+#################################################################################################
+################### SECCIÓN DE CRECIMIENTO RATONES CON ZORROS ###################################
+
+
+params_rat_zor = (1.0, 0.1, 0.075, 1.5)     # alpha, beta, delta, gamma
+
+ratones_con_zorros_resultado = euler_method(
+    lotka_volterra,
+    np.array([10.0, 5.0]), # y0: 10 preys and 5 predators
+    0.0,                   # t0: initial time
+    0.01,                  # delta
+    800,                   # iterations
+    *params_rat_zor                # lotka volterra parameters of the equations
+)
+
+df_rat_zor = ratones_con_zorros_resultado
+
+ax[1,0].set_xlim(df_rat_zor.iterations.min(), df_rat_zor.iterations.max())
+ax[1,0].set_ylim(0, df_rat_zor.y0.max() * 1.1)
+ax[1,0].set_title('Poblacion ratones viviendo con zorros\nvariando el gamma. @hijoarbol')
+ax[1,0].set_xlabel('Tiempo')
+ax[1,0].set_ylabel('Población')
+
+# Líneas vacías que se van llenando
+line_rat_zor, = ax[1,0].plot([], [], color='purple', label='gamma=1.5', linewidth=1.5)
+
+ax[1,0].legend()
+
+def update_rat_zor(frame):
+    line_rat_zor.set_data(df_rat_zor.iterations[:frame], df_rat_zor.y0[:frame])
+    return line_rat_zor,
+
+ani_rat_zor = FuncAnimation(
+    fig,
+    update_rat_zor,
+    frames=len(df_rat_zor),  # cuántos frames en total
+    interval=20,      # ms entre frames (más bajo = más rápido)
+    blit=True
+)
+
+#################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+#################################################################################################
+################### SECCIÓN DE CRECIMIENTO EXPONENCIAL SIN RATONES ##############################
+
+# Parámetros iniciales
+R0 = 10.0      # población inicial de presas
+alpha = 1.0    # tasa de crecimiento
+t = np.linspace(0, 5, 250)  # tiempo
+
+# Solución analítica
+R = R0 * np.exp(alpha * t)
+
+# Crear subplot para la animación
+ax[1,1].set_xlim(t.min(), t.max())
+ax[1,1].set_ylim(0, R.max() * 1.1)
+ax[1,1].set_title('Crecimiento exponencial de presas\nsin predadores. @hijoarbol')
+ax[1,1].set_xlabel('Tiempo')
+ax[1,1].set_ylabel('Población')
+
+line_exp, = ax[1,1].plot([], [], color='purple', linewidth=1.5, label='R(t)=R0 exp(alpha t)')
+ax[1,1].legend()
+
+# Función de actualización
+def update_exp(frame):
+    line_exp.set_data(t[:frame], R[:frame])
+    return line_exp,
+
+ani3 = FuncAnimation(
+    fig,
+    update_exp,
+    frames=len(t),
+    interval=10,
+    blit=True
+)
+
+#################################################################################################
+
+
+
+
+
+
+
+
+
+
+
 plt.tight_layout()
 plt.show()
