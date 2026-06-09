@@ -79,6 +79,57 @@ ani = FuncAnimation(
 #################################################################################################
 
 
+#################################################################################################
+################### INICIO SECCIÓN SERIE DE TIEMPO ZORROS-RATONES ############################
+
+params_zorro_rat = (1.0, 0.1, 0.075, 1.5)     # alpha, beta, delta, gamma
+
+l_v_zorro_rat = euler_method(
+    lotka_volterra,
+    np.array([10.0, 5.0]), # y0: 10 preys and 5 predators
+    0.0,                   # t0: initial time
+    0.01,                  # delta
+    2000,                   # iterations
+    *params_zorro_rat                # lotka volterra parameters of the equations
+)
+
+
+
+df_zorro_rat = l_v_zorro_rat
+
+
+ax[0,0].set_xlim(df_zorro_rat.iterations.min(), df_zorro_rat.iterations.max())
+ax[0,0].set_ylim(0, max(df_zorro_rat.y0.max(), df_zorro_rat.y1.max()) * 1.1)
+ax[0,0].set_title('Poblacion zorros y ratones,\nen el tiempo. @hijoarbol')
+ax[0,0].set_xlabel('Tiempo')
+ax[0,0].set_ylabel('Población')
+
+# Líneas vacías que se van llenando
+line_zorros, = ax[0,0].plot([], [], color='orange', label='zorros', linewidth=1.5)
+line_ratones, = ax[0,0].plot([], [], color='silver', label='ratones', linewidth=1.5)
+
+ax[0,0].legend()
+
+def update_zorros_ratones(frame):
+    line_zorros.set_data(df_zorro_rat.iterations[:frame], df_zorro_rat.y1[:frame])
+    line_ratones.set_data(df_zorro_rat.iterations[:frame], df_zorro_rat.y0[:frame])
+
+    return line_zorros, line_ratones
+
+ani_serie_tiempo_zorros_rat = FuncAnimation(
+    fig,
+    update_zorros_ratones,
+    frames=len(df_zorro_rat),  # cuántos frames en total
+    interval=1,      # ms entre frames (más bajo = más rápido)
+    blit=True
+)
+
+
+
+################### FIN SECCIÓN SERIE DE TIEMPO ZORROS-RATONES ############################
+#################################################################################################
+
+
 
 
 
@@ -175,6 +226,55 @@ ani3 = FuncAnimation(
 #################################################################################################
 
 
+##################################################################
+######################## PHASE DIAGRAM ###########################
+
+# params_zorro_rat = (1.0, 0.5, 0.2, 0.6)     # alpha, beta, delta, gamma
+
+# l_v_phase_space = euler_method(
+#     lotka_volterra,
+#     np.array([8.0, 4.0]), # y0: 10 preys and 5 predators
+#     0.0,                   # t0: initial time
+#     0.001,                  # delta
+#     50000,                   # iterations
+#     *params_zorro_rat                # lotka volterra parameters of the equations
+# )
+
+
+
+# df_phase = l_v_phase_space
+
+
+# fig, ax = plt.subplots()
+
+# ax.set_xlim(0, max(df_phase.y0.max(), df_phase.y1.max()) * 1.1)
+# ax.set_ylim(0, max(df_phase.y0.max(), df_phase.y1.max()) * 1.1)
+# ax.set_title('zorros vs ratones,\ncomportamiento cíclico. @hijoarbol')
+# ax.set_xlabel('población de zorros')
+# ax.set_ylabel('población de ratones')
+
+# # Líneas vacías que se van llenando
+# line_phase_space, = ax.plot([], [], color='green', linewidth=1.5)
+
+
+
+# def update_phase_space(frame):
+#     line_phase_space.set_data(df_phase.y0[:frame], df_phase.y1[:frame])
+
+#     return line_phase_space, 
+
+# ani_phase_space = FuncAnimation(
+#     fig,
+#     update_phase_space,
+#     frames=len(df_phase),  # cuántos frames en total
+#     interval=0.0001,      # ms entre frames (más bajo = más rápido)
+#     blit=True
+# )
+
+
+
+
+##################################################################
 
 
 
