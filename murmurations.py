@@ -59,15 +59,24 @@ FPS = 60  # Fotogramas por segundo
 
 class Pajaro:
     def __init__(self):
-        # Posición inicial aleatoria en la pantalla
+        # Posición inicial aleatoria en la pantalla.
+        # Generates a random number between 0 and ANCHO/ALTO.
         self.pos = np.array([
             np.random.uniform(0, ANCHO),
             np.random.uniform(0, ALTO)
         ], dtype=float)
 
         # Velocidad inicial aleatoria en cualquier dirección
-        # np.random.uniform(-1, 1) da un número entre -1 y 1
+        # np.random.uniform(0, 2*np.pi) da un número entre 0 y 2pi, esto calcula el ángulo
+        # de dirección a donde se moverá el pájaro en la siguiente iteración. 2pi radianes
+        # indica una circunferencia completa, significa 0 o 360°. 
         angulo = np.random.uniform(0, 2 * np.pi)
+        
+        # en el circulo unitario (radio=1), cualquier punto sobre la circunferencia, se puede
+        # expresar como (x,y) = (cos(ang), sen(ang)), donde ang es el angulo medido desde el eje x.
+        # Entonces, ya teniendo un vector unitario (x,y), si le multiplicamos el parametro velocidad 
+        # a este vector, podemos encontrar la velocidad. 
+
         self.vel = np.array([np.cos(angulo), np.sin(angulo)]) * VELOCIDAD_MAX
 
     def actualizar(self, todos_los_pajaros):

@@ -27,7 +27,24 @@
 # Animations and Simulations
 Here we will document some tools for excecute and create basic animations
 
-## Pygame
+
+## **Pygame**
+
+### Coordinates in Pygame: 
+The origin of the win, so we use (x,y) coordenates, is the upper left corner of the window. so, increasing y drives us towards down and increasing x drives us towards right.
+
+### Speed / Velocity
+Here, the speed is the change in position at each frame of every animated object
+
+new position = current position + speed
+
+for example, if the initial position is [100, 200] and the velocity is [14.5, 14.5], the next frame the position will be [114.5, 214.5]
+
+
+### Main loop:
+the animation/game in pygame always has a main loop, so it update the window at each iteration.
+
+
 
 ## **matplotlib.animation**
 The basic example here is the animation of a time series, ploting gradually a time series into a chart. 
