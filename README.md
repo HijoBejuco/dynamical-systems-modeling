@@ -36,7 +36,7 @@ The origin of the win, so we use (x,y) coordenates, is the upper left corner of 
 ### Speed / Velocity
 Here, the speed is the change in position at each frame of every animated object
 
-new position = current position + speed
+**new position** = current position + speed
 
 for example, if the initial position is [100, 200] and the velocity is [14.5, 14.5], the next frame the position will be [114.5, 214.5]
 

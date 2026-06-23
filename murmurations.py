@@ -59,6 +59,7 @@ FPS = 60  # Fotogramas por segundo
 
 class Pajaro:
     def __init__(self):
+        
         # Posición inicial aleatoria en la pantalla.
         # Generates a random number between 0 and ANCHO/ALTO.
         self.pos = np.array([
@@ -69,14 +70,15 @@ class Pajaro:
         # Velocidad inicial aleatoria en cualquier dirección
         # np.random.uniform(0, 2*np.pi) da un número entre 0 y 2pi, esto calcula el ángulo
         # de dirección a donde se moverá el pájaro en la siguiente iteración. 2pi radianes
-        # indica una circunferencia completa, significa 0 o 360°. 
+        # indica una circunferencia completa, significa 0° o 360°. 
         angulo = np.random.uniform(0, 2 * np.pi)
         
         # en el circulo unitario (radio=1), cualquier punto sobre la circunferencia, se puede
         # expresar como (x,y) = (cos(ang), sen(ang)), donde ang es el angulo medido desde el eje x.
+        # O sea, cualquier ángulo se puede descomponer en coordenadas (x,y) como un vector unitario.
         # Entonces, ya teniendo un vector unitario (x,y), si le multiplicamos el parametro velocidad 
-        # a este vector, podemos encontrar la velocidad. 
-
+        # a este vector, podemos encontrar la velocidad. El vector unitario da la dirección y 
+        # el parámetro VELOCIDAD aporta la magnitud que tendrá la velocidad. 
         self.vel = np.array([np.cos(angulo), np.sin(angulo)]) * VELOCIDAD_MAX
 
     def actualizar(self, todos_los_pajaros):
@@ -217,7 +219,9 @@ def main():
     pygame.display.set_caption("Murmuración de Aves")
     reloj = pygame.time.Clock()
 
-    # Crear todos los pájaros
+    # Here, we create all the objects of the class Pajaro(), depending on the
+    # parameter NUM_PAJAROS. Here each object has the attribute of position (.pos)
+    # and volocity (.vel)
     pajaros = [Pajaro() for _ in range(NUM_PAJAROS)]
 
     print("Controles:")
