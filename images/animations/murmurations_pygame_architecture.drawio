@@ -1,11 +1,14 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="d0r6lDG3qEyFm429LPCw">
-    <mxGraphModel dx="1406" dy="814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="2000" math="0" shadow="0">
+    <mxGraphModel dx="1406" dy="2814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="2000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="-MaOtwnNPOw1yhpoV-ua-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;Lucida Console&quot;&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(51, 51, 255));&quot;&gt;def&lt;/font&gt;&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;font-family: &amp;quot;Lucida Console&amp;quot;;&quot;&gt;&lt;font style=&quot;color: light-dark(rgb(255, 179, 102), rgb(255, 179, 102));&quot;&gt;__init__&lt;/font&gt;&lt;/span&gt;&lt;font face=&quot;Lucida Console&quot;&gt;(self):&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;the &lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 179, 102));&quot;&gt;__init__&lt;/font&gt;(self) method is excecuted automatically each time we create a new object &lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(153, 255, 153));&quot;&gt;Pajaro&lt;/font&gt;()&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;This method initializes all the calculations needed for the process.&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-family: &amp;quot;Lucida Console&amp;quot;; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;initial random position of the bird at the screen&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-family: &amp;quot;Lucida Console&amp;quot;; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;initial random velocity, starting with a random angle and then multiplied by a parameter VELOCITY&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="160" width="460" x="210" y="50" as="geometry" />
+          <mxGeometry height="160" width="460" x="210" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="9Z5A-6fY5TpeiuCEBlv1-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;Lucida Console&quot; style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 229, 153));&quot;&gt;main&lt;/font&gt;&lt;font face=&quot;Lucida Console&quot; style=&quot;color: light-dark(rgb(51, 51, 255), rgb(255, 217, 102));&quot;&gt;()&lt;/font&gt;&lt;font color=&quot;#3333ff&quot; face=&quot;Lucida Console&quot;&gt;: &lt;/font&gt;&lt;font face=&quot;Lucida Console&quot; style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;method.&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;This is the method that centralices and executes all the process&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="460" x="200" y="-30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

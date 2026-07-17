@@ -232,15 +232,21 @@ def main():
     # Este loop se repite FPS veces por segundo
     while True:
 
-        # 1. Manejar eventos (teclas, cerrar ventana)
+        # 1. Manejar eventos (teclas, cerrar ventana), Here we listen what happens
+        # at the keyboard and the window, and acts based on that.
+        # pygame.event.get(): we get all the events happened on that instant (pressed
+        # keyboards, clicks, closed windows.) 
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            # pygame.KEYDOWN means that a key has pressed.
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+                # Key R is pressed. Here we reinitiate a new simulation with a new pajaros
+                # list, with random positions and velocities.
                 if evento.key == pygame.K_r:
                     pajaros = [Pajaro() for _ in range(NUM_PAJAROS)]
 
