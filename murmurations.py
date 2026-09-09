@@ -229,7 +229,7 @@ def main():
     print("  R → reiniciar con nuevas posiciones")
 
     # ── LOOP PRINCIPAL ──
-    # Este loop se repite FPS veces por segundo
+    # Este loop se repite FPS veces por segundo.
     while True:
 
         # 1. Manejar eventos (teclas, cerrar ventana), Here we listen what happens
