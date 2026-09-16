@@ -117,8 +117,15 @@ class Pajaro:
         vecinos = []
         for otro in todos:
             if otro is self:
+                # If 'otro' is the current Pajaro object, do nothing and go the next 'for' iteration
                 continue
+            # Here we calculate the euclidean distance of both positions (self and otro). each position
+            # is a 2D vector wit x,y coordinates. So, this calculates the distance in straight line
+            # between both points in the plane.
             distancia = np.linalg.norm(self.pos - otro.pos)
+
+            # If the 'otro' distance is short enough, so append the 'otro' object
+            # into the vecinos list.
             if distancia < RADIO_VISION:
                 vecinos.append(otro)
         return vecinos
@@ -250,7 +257,10 @@ def main():
                 if evento.key == pygame.K_r:
                     pajaros = [Pajaro() for _ in range(NUM_PAJAROS)]
 
-        # 2. Actualizar la lógica de cada pájaro
+        # 2. Update the logic of each pajaro
+        # each object of the class Pajaro has the method .actualizar, which recieves
+        # as parameter the list of all Pajaro objects. This is because we need to know
+        # the position and variables of all pajaros to perform calculations
         for pajaro in pajaros:
             pajaro.actualizar(pajaros)
 
