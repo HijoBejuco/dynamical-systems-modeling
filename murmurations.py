@@ -16,7 +16,7 @@ import numpy as np
 import sys
 
 # ─────────────────────────────────────────────
-# PARÁMETROS — AQUÍ ES DONDE PUEDES EXPERIMENTAR
+# PARÁMETROS
 # ─────────────────────────────────────────────
 
 ANCHO = 1400          # Ancho de la ventana en píxeles
@@ -138,13 +138,26 @@ class Pajaro:
         HACIA AFUERA (lejos de ese vecino), proporcional a qué tan cerca está.
         Sumamos todos esos vectores.
         """
+        # Creates a 2D array of zeroes.
         fuerza = np.zeros(2)
+
         for otro in vecinos:
+            # This generates a vector that goes from 'otro' to 'self'. This vector's origin 
+            # is the (0,0) coordinates. But if we put it's origin at 'otro.pos' it will end at 'self.pos'
             diff = self.pos - otro.pos
+
+            # Euclidean distance between 'self' and 'otro'. its basicalle the distance
+            # between these two points.
             distancia = np.linalg.norm(diff)
+
             if distancia < RADIO_SEPARACION and distancia > 0:
-                # Mientras más cerca, más fuerte la repulsión
+
+                # Dividing the vector diff by its longitude, gives us a unit vector with the same
+                # direction of diff, but with longitude = 1. Here we just sum up all the directions
+                # of the unit vectors, generating the main direction and magnitude we need to run
+                # in the following iteration of the program.  
                 fuerza += diff / distancia
+                
         return fuerza
 
     def _alineacion(self, vecinos):
