@@ -76,8 +76,11 @@ class Pajaro:
         # en el circulo unitario (radio=1), cualquier punto sobre la circunferencia, se puede
         # expresar como (x,y) = (cos(ang), sen(ang)), donde ang es el angulo medido desde el eje x.
         # O sea, cualquier ángulo se puede descomponer en coordenadas (x,y) como un vector unitario.
+        
+        # la variable angulo, es un angulo aleatorio, que nos dará la dirección del pajaro.
+
         # Entonces, ya teniendo un vector unitario (x,y), si le multiplicamos el parametro velocidad 
-        # a este vector, podemos encontrar la velocidad. El vector unitario da la dirección y 
+        # a este vector, podemos encontrar el vector velocidad. El vector unitario da la dirección y 
         # el parámetro VELOCIDAD aporta la magnitud que tendrá la velocidad. 
         self.vel = np.array([np.cos(angulo), np.sin(angulo)]) * VELOCIDAD_MAX
 
@@ -132,18 +135,20 @@ class Pajaro:
 
     def _separacion(self, vecinos):
         """
-        REGLA 1: Alejarse de los pájaros demasiado cercanos.
+        REGLA 1: Alejarse de los pájaros cercanos.
         
         Si un vecino está muy cerca, calculamos un vector que apunta
-        HACIA AFUERA (lejos de ese vecino), proporcional a qué tan cerca está.
-        Sumamos todos esos vectores.
+        HACIA AFUERA (lejos de ese vecino). Sumamos todos esos vectores
+        resultantes para obtener un solo vector que apunte en direccion
+        opuesta de todos los vecinos.
         """
         # Creates a 2D array of zeroes.
         fuerza = np.zeros(2)
 
         for otro in vecinos:
             # This generates a vector that goes from 'otro' to 'self'. This vector's origin 
-            # is the (0,0) coordinates. But if we put it's origin at 'otro.pos' it will end at 'self.pos'
+            # is the (0,0) coordinates. But if we put it's origin at 'otro.pos' it will end at 'self.pos'.
+            # So, basically, this vector goes far from the otro vector.
             diff = self.pos - otro.pos
 
             # Euclidean distance between 'self' and 'otro'. its basicalle the distance
@@ -153,11 +158,13 @@ class Pajaro:
             if distancia < RADIO_SEPARACION and distancia > 0:
 
                 # Dividing the vector diff by its longitude, gives us a unit vector with the same
-                # direction of diff, but with longitude = 1. Here we just sum up all the directions
-                # of the unit vectors, generating the main direction and magnitude we need to run
+                # direction of diff, but with longitude = 1. Here we just sum up all the unit vectors,
+                # generating the main direction and magnitude we need to run off
                 # in the following iteration of the program.  
                 fuerza += diff / distancia
-                
+
+        # This is a vector that goes far from the group of vecinos
+        # this points towards opposite direction from the group of vecinos.
         return fuerza
 
     def _alineacion(self, vecinos):
@@ -166,9 +173,37 @@ class Pajaro:
         
         Calculamos la velocidad promedio de todos los vecinos
         y ajustamos la nuestra para parecerse a esa.
+
+        Devolvemos la diferencia: cuánto nos tenemos que ajustar
+        Aca hay un detalle FUNDAMENTAL y muy bello; tiene que ver con el significado
+        o interpretacion geometrica de la resta. La resta escalar, vectorial, y en
+        general en cualquier dimensión Rn, tiene el mismo significado. La resta se
+        puede definir como ¿cuanto debo agregarle o disminuirle a x para llegar a y?
+
+        Ejemplo escalar: 
+            10 - 6 = 4, no significa 'la magnitud bajo 4', significa: 'faltan 4 para llegar de 6 a 10',
+            pensandolo siempre geometricamente como: (posicion_objetivo - posicion_actual)
+        
+        Ejemplo vectorial:
+            Pasa lo mismo con la resta vectorial, el resultado de la resta vectorial me da un vector que
+            indica el vector que necesito sumar para llegar a la posicion objetivo desde la pos actual.
+            En este caso, lo que necesito sumarle a la velocidad actual para llegar la velocidad promedio.
+            
+                self.vel = [4, 3]
+                vel_promedio = [10, 8]
+
+                Yo lo que quiero es ir de mi velocidad actual a la velocidad promedio, entonces necesito
+                calcular cuanto le tengo que sumar a mi velocidad actual self.vel para que me de la vel_promedio
+
+                vel_promedio - self.vel = [10, 8] - [4, 3] = [6, 5]
+
+                Entonces, si quiero llegar a la vel promedio, vasta con sumarle [6, 5] a mi vel actual:
+
+                [4, 3] + [6, 5] = [10, 8]
+
         """
         vel_promedio = np.mean([v.vel for v in vecinos], axis=0)
-        # Devolvemos la diferencia: cuánto nos tenemos que ajustar
+
         return vel_promedio - self.vel
 
     def _cohesion(self, vecinos):
